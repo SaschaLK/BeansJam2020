@@ -13,6 +13,7 @@ public class MobSpawner : MonoBehaviour {
     }
 
     private IEnumerator SpawnMob() {
+        Instantiate(mobs[Random.Range(0, mobs.Count)], transform.position, Quaternion.identity, transform);
         yield return new WaitForSecondsRealtime(spawnDelay);
     }
 }
