@@ -7,8 +7,6 @@ public class PlayerBehaviour : MonoBehaviour
     public float MovementSpeed = 5f;
     public float StrafeSpeed = 2f;
 
-    public GameObject Sphere;
-
     public int HitPoints = 100;
 
     // Start is called before the first frame update
@@ -28,13 +26,9 @@ public class PlayerBehaviour : MonoBehaviour
         //Get mouse position from screen coordinates
         var mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
-        var mouseWorldPosition = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
 
         //This describes the mouse position in world coordinates
-        Sphere.transform.position = mouseWorldPosition;
-
-        var positionOnScreen = (Vector2)Camera.main.WorldToViewportPoint(transform.position);
-        var mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        var mouseWorldPosition = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
         var angle = this.AngleBetweenTwoPoints(mouseWorldPosition, transform.position);
 
         //Calculates final rotation
