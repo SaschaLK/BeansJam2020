@@ -3080,36 +3080,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7125951fd595f47b386fb2e482251d, type: 3}
---- !u!1 &1863635613
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1863635614}
-  m_Layer: 0
-  m_Name: Projectiles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1863635614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863635613}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2011604778}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863920238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3347,31 +3317,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7125951fd595f47b386fb2e482251d, type: 3}
---- !u!1 &2011604777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2430109953355169549, guid: babde8cc99ea2bc45949fe3cd8647000,
-    type: 3}
-  m_PrefabInstance: {fileID: 7631782919900792672}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2011604778 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
-    type: 3}
-  m_PrefabInstance: {fileID: 7631782919900792672}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2011604779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011604777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c2442d5ec1d934dad295901f8f67e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProjectilesGroup: {fileID: 1863635613}
 --- !u!1001 &2064773068
 PrefabInstance:
   m_ObjectHideFlags: 0
