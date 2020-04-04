@@ -15,6 +15,8 @@ public class MapGenerator : MonoBehaviour {
     public List<GameObject> floorTiles = new List<GameObject>();
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject spawner;
+    public GameObject light;
+    [Range(0,1)] public float lightThreshold;
     public GameObject player;
 
     private Dictionary<Vector2, bool> obstacleMap = new Dictionary<Vector2, bool>();
@@ -25,6 +27,7 @@ public class MapGenerator : MonoBehaviour {
         GenerateEmptyMap();
         GenerateObstacles();
         GenerateSpawners();
+        GenerateLights();
 
         AstarPath.active.Scan();
     }
@@ -115,5 +118,38 @@ public class MapGenerator : MonoBehaviour {
         int selectVector = Random.Range(0, openTiles.Count);
         Vector2 playerSpawn = openTiles[selectVector];
         player.transform.position = playerSpawn;
+    }
+
+    private void GenerateLights() {
+        List<Vector2> possibleLights = new List<Vector2>();
+
+        foreach(KeyValuePair<Vector2, bool> tile in obstacleMap) {
+            if (!tile.Value) {
+                Vector2 tempNorth = tile.Key + Vector2.up;
+                Vector2 tempEast = tile.Key + Vector2.right;
+                Vector2 tempSouth = tile.Key + Vector2.down;
+                Vector2 tempWest = tile.Key + Vector2.left;
+                if (obstacleMap.ContainsKey(tempNorth) && obstacleMap[tempNorth]) {
+                    possibleLights.Add(tile.Key);
+                }
+                else if(obstacleMap.ContainsKey(tempEast) && obstacleMap[tempEast]) {
+                    possibleLights.Add(tile.Key);
+                }
+                else if(obstacleMap.ContainsKey(tempSouth) && obstacleMap[tempSouth]) {
+                    possibleLights.Add(tile.Key);
+                }
+                else if(obstacleMap.ContainsKey(tempWest) && obstacleMap[tempWest]) {
+                    possibleLights.Add(tile.Key);
+                }
+            }
+        }
+
+        foreach(Vector2 possibleLight in possibleLights) {
+            float tempChance = Random.Range(0f, 1f);
+            if (tempChance > lightThreshold) {
+                Debug.Log("int light");
+                Instantiate(light, possibleLight, Quaternion.identity, transform);
+            }
+        }
     }
 }
