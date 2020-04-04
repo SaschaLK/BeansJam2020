@@ -13,6 +13,9 @@ public struct ItemSlot
     public float CoolDown;
 }
 
+ 
+
+
 public class PlayerBehaviour : MonoBehaviour
 {
     public float MovementSpeed = 5f;
@@ -35,13 +38,15 @@ public class PlayerBehaviour : MonoBehaviour
     float _RemainCoolDown = 0f;
     Vector2 _Direction;
     Vector2 _Movement;
+    Vector2 _DraggingPointStart;
+    Vector2 _DraggingPointEnd;
 
     Rigidbody2D _Rigidbody;
 
     public bool IsWalking;
     public bool IsDragging;
 
-    float _DraggingTime;
+    //float _DraggingTime;
 
     Animator _Animator;
 
@@ -68,6 +73,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -83,41 +90,18 @@ public class PlayerBehaviour : MonoBehaviour
         //This describes the mouse position in world coordinates
         var mouseWorldPosition = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
 
-        _PositionLookAt = mouseWorldPosition;
-
-        //Calculates final rotation
-        var angle = this.AngleBetweenTwoPoints(_PositionLookAt, transform.position);
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-
-        _Movement = new Vector2(horizontal, vertical);
-
-        IsWalking = _Movement != Vector2.zero;
-        _Animator.SetBool("IsWalking", IsWalking);
-        //Debug.Log(_Animator.GetBool("IsWalking"));
-
-        //Calculates target movement vector
-        switch (MovementType)
-        {
-            case MovementType.Global:
-                {
-                    //var translation = (Vector2.up * vertical + Vector2.right * horizontal) * MovementSpeed * dt;
-                    //this.gameObject.transform.Translate(translation, Space.World);
-                }
-                break;
-
-            case MovementType.LookAndMove:
-                {
-                    //var translation = (transform.up * vertical * MovementSpeed + transform.right * horizontal * StrafeSpeed) * dt;
-                    //this.gameObject.transform.Translate(translation, Space.World);
-                }
-                break;
-        }
+        
 
         if (Input.GetButton("Fire1"))
         {
             if (_RemainCoolDown == 0)
             {
+                if (IsDragging == false)
+                {
+                    _DraggingPointStart = mouseWorldPosition;
+                }
                 IsDragging = true;
+                
             }
         }
 
@@ -136,9 +120,27 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (IsDragging)
         {
-            _DraggingTime += dt;
+            //_DraggingTime += dt;
+            _DraggingPointEnd = mouseWorldPosition;
+            
+        }
+        else
+        {
+            _PositionLookAt = mouseWorldPosition;
         }
 
+        Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
+        //Debug.Log(_DraggingPointEnd.ToString());
+        //Debug.Log(_DraggingPointStart.ToString());
+        //Calculates final rotation
+        var angle = this.AngleBetweenTwoPoints(_PositionLookAt, transform.position);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+
+        _Movement = new Vector2(horizontal, vertical);
+
+        IsWalking = _Movement != Vector2.zero;
+
+        _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
 
     }
