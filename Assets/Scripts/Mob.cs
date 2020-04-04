@@ -10,7 +10,10 @@ public class Mob : MonoBehaviour {
     //private Transform player;
 
     private void Start() {
-        GetComponent<AIDestinationSetter>().target = MobManager.instance.player;
+        if (MobManager.instance != null && MobManager.instance.player != null)
+        {
+            GetComponent<AIDestinationSetter>().target = MobManager.instance.player;
+        }
         //player = MobManager.instance.player;
     }
 
