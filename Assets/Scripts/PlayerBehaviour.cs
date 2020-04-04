@@ -22,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float StrafeSpeed = 2f;
 
     public int HitPoints = 100;
+    public GameObject healthBar;
 
     public MovementType MovementType = MovementType.Global;
 
@@ -192,4 +193,18 @@ public class PlayerBehaviour : MonoBehaviour
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg - 90f;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.layer == 9){
+            TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
+        }
+    }
+
+    private void TakeDamage(int damage) {
+        HitPoints -= damage;
+        healthBar.GetComponent<HealthBar>().SetHealth(HitPoints);
+        if(HitPoints <= 0) {
+            //TO_DO Change to GameManager.instance.ChangeRealm()
+            MobManager.instance.ChangeRealm();
+        }
+    }
 }
