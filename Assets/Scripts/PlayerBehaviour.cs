@@ -47,6 +47,10 @@ public class PlayerBehaviour : MonoBehaviour
     public bool IsWalking;
     public bool IsDragging;
 
+    public GameObject DraggingArrowObject;
+
+    public GameObject CurrentDraggingArrowObject;
+
     //float _DraggingTime;
 
     Animator _Animator;
@@ -71,9 +75,14 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator = this.GetComponentInChildren<Animator>();
 
         MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
-
-        healthUI.SetMaxHealth(HitPoints);
-        AudioController.Instance.ChangeTheme(TrackThemes.alive);
+        if (healthUI != null)
+        {
+            healthUI.SetMaxHealth(HitPoints);
+        }
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.ChangeTheme(TrackThemes.alive);
+        }
     }
 
     
@@ -102,6 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (IsDragging == false)
                 {
                     _DraggingPointStart = mouseWorldPosition;
+                        CurrentDraggingArrowObject = Instantiate(DraggingArrowObject, GameManager.Instance.ProjectilesGroup.transform);
                 }
                 IsDragging = true;
                 
@@ -117,7 +127,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (_RemainCoolDown == 0)
             {
-                Fire();
+                //Fire();
             }
         }
 
@@ -197,13 +207,27 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 9){
-            TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
+            //TakeDamage(collision.gameObject);
         }
     }
 
-    private void TakeDamage(int damage) {
+    private void TakeDamage(GameObject collisionObject) {
+
+        var damage = 0;
+
+        var mob = collisionObject.GetComponent<Mob>();
+        if (mob != null)
+        {
+            damage = mob.damage;
+        }
+
         HitPoints -= damage;
-        healthUI.GetComponent<HealthBar>().SetHealth(HitPoints);
+
+        if (healthUI != null)
+        {
+            var healthBar = healthUI.GetComponent<HealthBar>();
+            healthBar.SetHealth(HitPoints);
+        }
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
             MobManager.instance.ChangeRealm();

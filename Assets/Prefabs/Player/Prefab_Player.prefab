@@ -273,12 +273,17 @@ MonoBehaviour:
   MovementSpeed: 3.5
   StrafeSpeed: 2.5
   HitPoints: 100
+  healthUI: {fileID: 0}
   MovementType: 0
   LightObject: {fileID: 1452673669517448727}
-  ProjectileStone: {fileID: 0}
+  ProjectileStone: {fileID: 8224477619605229550, guid: 1e130f076d15a9842976f5c9dedc6b66,
+    type: 3}
   ProjectileBomb: {fileID: 0}
   IsWalking: 1
   IsDragging: 0
+  DraggingArrowObject: {fileID: 5290534132907145387, guid: 22a71b37ae88a6345af4316b0f081b6c,
+    type: 3}
+  CurrentDraggingArrowObject: {fileID: 0}
 --- !u!50 &7940696555547261239
 Rigidbody2D:
   serializedVersion: 4

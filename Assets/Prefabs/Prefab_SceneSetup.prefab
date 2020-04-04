@@ -596,6 +596,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8224477619605229550, guid: 1e130f076d15a9842976f5c9dedc6b66,
         type: 3}
+    - target: {fileID: 7940696555547261237, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
+        type: 3}
+      propertyPath: DraggingArrowObject
+      value: 
+      objectReference: {fileID: 5290534132907145387, guid: 22a71b37ae88a6345af4316b0f081b6c,
+        type: 3}
     - target: {fileID: 7940696555547261242, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
         type: 3}
       propertyPath: m_Name
