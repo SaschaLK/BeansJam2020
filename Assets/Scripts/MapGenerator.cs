@@ -16,7 +16,6 @@ public class MapGenerator : MonoBehaviour {
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject spawner;
     public GameObject player;
-    private bool playerPositionSet = false;
 
     private Dictionary<Vector2, bool> obstacleMap = new Dictionary<Vector2, bool>();
 
