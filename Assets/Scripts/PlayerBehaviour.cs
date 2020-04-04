@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public enum MovementType { LookAndMove, Global};
+public enum MovementType { LookAndMove, Global };
 
 public struct ItemSlot
 {
@@ -39,6 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
     Rigidbody2D _Rigidbody;
 
     public bool IsWalking;
+    public bool IsDragging;
+
+    float _DraggingTime;
 
     Animator _Animator;
 
@@ -60,7 +63,9 @@ public class PlayerBehaviour : MonoBehaviour
         CurrentProjectile = Projectiles.FirstOrDefault();
 
         _Animator = this.GetComponentInChildren<Animator>();
-        
+
+        MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
+
     }
 
     // Update is called once per frame
@@ -88,7 +93,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         IsWalking = _Movement != Vector2.zero;
         _Animator.SetBool("IsWalking", IsWalking);
-        Debug.Log(_Animator.GetBool("IsWalking"));
+        //Debug.Log(_Animator.GetBool("IsWalking"));
 
         //Calculates target movement vector
         switch (MovementType)
@@ -112,11 +117,30 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (_RemainCoolDown == 0)
             {
-                //_RemainCoolDown = CurrentProjectile.CoolDown;
+                IsDragging = true;
+            }
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (IsDragging)
+            {
+                IsDragging = false;
+            }
+
+            if (_RemainCoolDown == 0)
+            {
                 Fire();
             }
         }
-        
+
+        if (IsDragging)
+        {
+            _DraggingTime += dt;
+        }
+
+        _Animator.SetBool("IsDragging", IsDragging);
+
     }
 
     private void FixedUpdate()
@@ -151,7 +175,7 @@ public class PlayerBehaviour : MonoBehaviour
     IEnumerator DoCooldown(float coolDown)
     {
         _RemainCoolDown = coolDown;
-        
+
         while (_RemainCoolDown > 0)
         {
             _RemainCoolDown -= Time.deltaTime;
