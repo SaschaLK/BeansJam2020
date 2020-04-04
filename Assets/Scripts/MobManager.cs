@@ -8,6 +8,7 @@ public class MobManager : MonoBehaviour {
 
     public Transform player;
     public bool spawning;
+    public int spawnableMobs;
 
     private void Awake() {
         instance = this;

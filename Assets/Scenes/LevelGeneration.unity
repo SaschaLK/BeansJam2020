@@ -399,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1624950358}
   spawning: 1
+  spawnableMobs: 20
 --- !u!4 &1631903111
 Transform:
   m_ObjectHideFlags: 0
