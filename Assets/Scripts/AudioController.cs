@@ -27,6 +27,7 @@ public class AudioController : MonoBehaviour
 
     public void setMusicVol(float music_vol)
     {
+        PlayerPrefs.SetFloat("MusicVol",music_vol);
         if (music_vol <= -20.0F)
             music_vol = -80.0F;
         mainMix.SetFloat("music_vol",music_vol);
@@ -34,6 +35,7 @@ public class AudioController : MonoBehaviour
 
     public void setSFXVol(float sfx_vol)
     {
+        PlayerPrefs.SetFloat("SFXVol", sfx_vol);
         if (sfx_vol <= -20.0F)
             sfx_vol = -80.0F;
         mainMix.SetFloat("sfx_vol", sfx_vol);

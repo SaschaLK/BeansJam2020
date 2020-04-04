@@ -3583,6 +3583,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7855958a674e72345a435b5c753653b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 1751857042}
+  sfxSlider: {fileID: 887941983}
+  anchorDropdown: {fileID: 1768952209}
 --- !u!4 &2033843899
 Transform:
   m_ObjectHideFlags: 0
