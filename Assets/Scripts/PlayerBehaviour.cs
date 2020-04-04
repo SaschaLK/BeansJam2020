@@ -88,7 +88,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         IsWalking = _Movement != Vector2.zero;
         _Animator.SetBool("IsWalking", IsWalking);
-        Debug.Log(_Animator.GetBool("IsWalking"));
+        //Debug.Log(_Animator.GetBool("IsWalking"));
 
         //Calculates target movement vector
         switch (MovementType)
