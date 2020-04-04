@@ -3540,7 +3540,7 @@ PrefabInstance:
     - target: {fileID: 513190148, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c206119184d11534caa4442511deb3ce, type: 2}
+      objectReference: {fileID: 9100000, guid: 31b0ad1d8d4c9994b8040699d25c3e7c, type: 2}
     - target: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3601,5 +3601,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_SceneSetup
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 513190148, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
