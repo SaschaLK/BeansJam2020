@@ -57,9 +57,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-#Audio Meta Files
-*.wav.meta
-*.ogg.meta
-
-*.meta
