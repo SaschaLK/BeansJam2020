@@ -65,7 +65,20 @@ MonoBehaviour:
   - {fileID: 5396408984054461636, guid: 28133ed492ffdc44daa1b7381af551f5, type: 3}
   - {fileID: 5396408984054461636, guid: 3b2d035259823bf4385c0c07d4d03f79, type: 3}
   - {fileID: 5396408984054461636, guid: 570f41306edfe9541b35b3c8b4f32edb, type: 3}
-  obstacles:
+  obstacles1:
   - {fileID: 9119593405034062348, guid: 7c0b9c06ce056614b9525d675eb27137, type: 3}
+  obstacles2: []
+  obstacles3: []
+  obstacles4: []
+  obstacles5: []
+  obstacles6: []
+  obstacles7: []
+  obstacles8: []
+  obstacles9: []
+  obstacles10: []
+  obstacles11: []
+  obstacles12: []
   spawner: {fileID: 5396408984054461636, guid: 7919de35abd1fde429134ea6359b3799, type: 3}
+  torch: {fileID: 2718001258831460439, guid: 08f0626ad28a6d141a00c4075cad1c70, type: 3}
+  lightThreshold: 0.892
   player: {fileID: 0}

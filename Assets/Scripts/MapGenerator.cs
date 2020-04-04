@@ -107,20 +107,39 @@ public class MapGenerator : MonoBehaviour {
             for (int y = 0; y <= height; y++) {
                 if (Mathf.PerlinNoise(x * 0.1f + seed, y * 0.1f + seed) > thresholdObstacle) {
                     obstacleMap[new Vector2(x, y)] = true;
-                    //Instantiate(obstacles1[0], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(obstacles1[0], new Vector3(x, y), Quaternion.identity, transform);
                 }
             }
         }
     }
 
     private void PlaceObstacles() {
-        foreach(KeyValuePair<Vector2,bool> obstacle in obstacleMap) {
-            Vector2 tempNorth = obstacle.Key + Vector2.up;
-            Vector2 tempEast = obstacle.Key + Vector2.right;
-            Vector2 tempSouth = obstacle.Key + Vector2.down;
-            Vector2 tempWest = obstacle.Key + Vector2.left;
-            Debug.Log(obstacleMap[new Vector2(-1, -1)]);
-        }
+        //foreach(KeyValuePair<Vector2,bool> obstacle in obstacleMap) {
+
+
+
+
+        //    List<Vector2> neighbours = new List<Vector2>();
+        //    //int caseNumber = 0;
+
+        //    Vector2 tempNorth = obstacle.Key + Vector2.up;
+        //    Vector2 tempEast = obstacle.Key + Vector2.right;
+        //    Vector2 tempSouth = obstacle.Key + Vector2.down;
+        //    Vector2 tempWest = obstacle.Key + Vector2.left;
+
+        //    if (obstacleMap.ContainsKey(tempNorth) || !obstacleMap[tempNorth] ) {
+        //        neighbours.Add(tempNorth);
+        //    }
+        //    if (obstacleMap.ContainsKey(tempEast)) {
+        //        neighbours.Add(tempEast);
+        //    }
+        //    if (obstacleMap.ContainsKey(tempSouth)) {
+        //        neighbours.Add(tempSouth);
+        //    }
+        //    if (obstacleMap.ContainsKey(tempWest)) {
+        //        neighbours.Add(tempWest);
+        //    }
+        //}
     }
 
     private void GenerateSpawners() {
