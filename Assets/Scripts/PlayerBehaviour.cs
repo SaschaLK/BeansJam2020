@@ -195,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 9){
-            TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
+            //TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
         }
     }
 
