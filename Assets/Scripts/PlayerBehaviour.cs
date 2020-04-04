@@ -39,6 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
     Rigidbody2D _Rigidbody;
 
     public bool IsWalking;
+    public bool IsDragging;
+
+    float _DraggingTime;
 
     Animator _Animator;
 
@@ -112,10 +115,29 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (_RemainCoolDown == 0)
             {
-                //_RemainCoolDown = CurrentProjectile.CoolDown;
+                IsDragging = true;
+            }
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (IsDragging)
+            {
+                IsDragging = false;
+            }
+
+            if (_RemainCoolDown == 0)
+            {
                 Fire();
             }
         }
+
+        if (IsDragging)
+        {
+            _DraggingTime += dt;
+        }
+
+        _Animator.SetBool("IsDragging", IsDragging);
         
     }
 
