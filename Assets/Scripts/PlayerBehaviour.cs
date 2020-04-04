@@ -73,6 +73,7 @@ public class PlayerBehaviour : MonoBehaviour
         MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
 
         healthUI.SetMaxHealth(HitPoints);
+        AudioController.Instance.ChangeTheme(TrackThemes.alive);
     }
 
     
