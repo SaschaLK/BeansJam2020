@@ -54,6 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
     //float _DraggingTime;
 
     Animator _Animator;
+    private Vector2 _ShootingVector;
 
     // Start is called before the first frame update
     void Start()
@@ -85,7 +86,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    
 
     // Update is called once per frame
     void Update()
@@ -111,7 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (IsDragging == false)
                 {
                     _DraggingPointStart = mouseWorldPosition;
-                        CurrentDraggingArrowObject = Instantiate(DraggingArrowObject, GameManager.Instance.ProjectilesGroup.transform);
+                    CurrentDraggingArrowObject = Instantiate(DraggingArrowObject, GameManager.Instance.ProjectilesGroup.transform);
                 }
                 IsDragging = true;
                 
@@ -123,6 +123,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (IsDragging)
             {
                 IsDragging = false;
+                Destroy(CurrentDraggingArrowObject);
             }
 
             if (_RemainCoolDown == 0)
@@ -135,14 +136,18 @@ public class PlayerBehaviour : MonoBehaviour
         {
             //_DraggingTime += dt;
             _DraggingPointEnd = mouseWorldPosition;
-            
+            _ShootingVector = _DraggingPointStart - _DraggingPointEnd;
+            //Debug.DrawLine((Vector2)transform.position, ((Vector2)transform.position + _ShootingVector.normalized));
+            //Debug.DrawLine(_DraggingPointStart, _DraggingPointEnd, Color.blue);
+            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, _DraggingPointStart, _DraggingPointEnd);
+            //UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, (Vector2)transform.position, (_ShootingVector - (Vector2)transform.position));
         }
         else
         {
             _PositionLookAt = mouseWorldPosition;
         }
 
-        Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
+        //Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
         //Debug.Log(_DraggingPointEnd.ToString());
         //Debug.Log(_DraggingPointStart.ToString());
         //Calculates final rotation
@@ -156,6 +161,20 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
 
+    }
+
+    public void UpdateGameObjectBetweenTwoPoints(GameObject prefab, Vector2 from, Vector2 to)
+    {
+        var center = (to + from) / 2.0f;
+        prefab.transform.position = center;
+
+        var direction = (to - from);
+        var directionNormalized = direction.normalized;
+
+        prefab.transform.up = -directionNormalized;
+
+        var distance = Mathf.Min(Mathf.Max(1f, direction.magnitude), 4f);
+        prefab.transform.localScale = Vector2.one * distance;
     }
 
     private void FixedUpdate()
