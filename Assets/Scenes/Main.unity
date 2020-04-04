@@ -377,17 +377,17 @@ PrefabInstance:
     - target: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1755605
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.622246
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.714083
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1973542334876252986, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
@@ -433,31 +433,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prefab_SceneSetup
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631782918325103864, guid: babde8cc99ea2bc45949fe3cd8647000,
-        type: 3}
-      propertyPath: ProjectileBomb
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631782918325103864, guid: babde8cc99ea2bc45949fe3cd8647000,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 1944101878}
-    - target: {fileID: 7631782918325103864, guid: babde8cc99ea2bc45949fe3cd8647000,
-        type: 3}
-      propertyPath: healthUI
-      value: 
-      objectReference: {fileID: 1944101879}
-    - target: {fileID: 7631782918413243591, guid: babde8cc99ea2bc45949fe3cd8647000,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 7631782919941265369, guid: babde8cc99ea2bc45949fe3cd8647000,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.999998
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
@@ -547,6 +522,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 117462306}
+    - target: {fileID: 2424474068967468872, guid: 533ddab544e11b24297daed757dd0405,
+        type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 2100266000}
     - target: {fileID: 2424474068967468873, guid: 533ddab544e11b24297daed757dd0405,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -639,11 +619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65938665c53a84d4aa6be6e0ebe866b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  fill: {fileID: 1859407640}
-  fullColor: {r: 0, g: 0, b: 0, a: 0}
-  lowColor: {r: 0, g: 0, b: 0, a: 0}
   fillAmount: {fileID: 1859407640}
+--- !u!1 &2100266000 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 69455337430326325, guid: babde8cc99ea2bc45949fe3cd8647000,
+    type: 3}
+  m_PrefabInstance: {fileID: 796389012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1702920103010970487
 PrefabInstance:
   m_ObjectHideFlags: 0

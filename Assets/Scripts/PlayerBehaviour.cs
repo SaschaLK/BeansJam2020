@@ -111,7 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
                 if (IsDragging == false)
                 {
                     _DraggingPointStart = mouseWorldPosition;
-                    CurrentDraggingArrowObject = Instantiate(DraggingArrowObject, GameManager.Instance.ProjectilesGroup.transform);
+                        CurrentDraggingArrowObject = Instantiate(DraggingArrowObject, GameManager.Instance.ProjectilesGroup.transform);
                 }
                 IsDragging = true;
                 
@@ -222,7 +222,12 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         HitPoints -= damage;
-        healthUI.GetComponent<HealthBar>().SetHealth(HitPoints);
+
+        if (healthUI != null)
+        {
+            var healthBar = healthUI.GetComponent<HealthBar>();
+            healthBar.SetHealth(HitPoints);
+        }
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
             MobManager.instance.ChangeRealm();
