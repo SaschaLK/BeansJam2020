@@ -32,37 +32,38 @@ public class MapGenerator : MonoBehaviour {
     private void GenerateWalls() {
         for (int x = -1; x <= width + 1; x++) {
             for (int y = -1; y <= height + 1; y++) {
+                int temp = Random.Range(0, 2);
                 //Northern walls
                 if (x != -1 && x != width + 1 && y == height + 1) {
-                    Instantiate(wallTilesNESW[0], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[0+temp], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //NorthEastern Wall
                 else if (x == width + 1 && y == height + 1) {
-                    Instantiate(wallTilesNESW[1], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[2], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //Eastern Wall
                 else if (x == width + 1 && y != height + 1 && y != -1) {
-                    Instantiate(wallTilesNESW[2], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[3+temp], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //SouthEastern Wall
                 else if (x == width + 1 && y == -1) {
-                    Instantiate(wallTilesNESW[3], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[5], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //Southern Wall
                 else if (x != -1 && x != width + 1 && y == -1) {
-                    Instantiate(wallTilesNESW[4], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[6+temp], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //SouthWestern Wall
                 else if (x == -1 && y == -1) {
-                    Instantiate(wallTilesNESW[5], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[8], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //Western Wall
                 else if (x == -1 && y != -1 && y != height + 1) {
-                    Instantiate(wallTilesNESW[6], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[9+temp], new Vector3(x, y), Quaternion.identity, transform);
                 }
                 //NorthWestern Wall
                 else if (x == -1 && y == height + 1) {
-                    Instantiate(wallTilesNESW[7], new Vector3(x, y), Quaternion.identity, transform);
+                    Instantiate(wallTilesNESW[11], new Vector3(x, y), Quaternion.identity, transform);
                 }
             }
         }
