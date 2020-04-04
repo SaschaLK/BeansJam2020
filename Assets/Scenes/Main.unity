@@ -443,7 +443,12 @@ PrefabInstance:
         type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1944101878}
+    - target: {fileID: 7631782918325103864, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 1944101879}
     - target: {fileID: 7631782918413243591, guid: babde8cc99ea2bc45949fe3cd8647000,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -638,6 +643,7 @@ MonoBehaviour:
   fill: {fileID: 1859407640}
   fullColor: {r: 0, g: 0, b: 0, a: 0}
   lowColor: {r: 0, g: 0, b: 0, a: 0}
+  fillAmount: {fileID: 1859407640}
 --- !u!1001 &1702920103010970487
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public enum MovementType { LookAndMove, Global };
+public enum MovementType { Global, LookAndMove };
 
 public struct ItemSlot
 {
@@ -22,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float StrafeSpeed = 2f;
 
     public int HitPoints = 100;
-    public GameObject healthBar;
+    public HealthBar healthUI;
 
     public MovementType MovementType = MovementType.Global;
 
@@ -72,6 +72,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
 
+        healthUI.SetMaxHealth(HitPoints);
     }
 
     
@@ -195,13 +196,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 9){
-            //TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
+            TakeDamage(collision.gameObject.GetComponent<Mob>().damage);
         }
     }
 
     private void TakeDamage(int damage) {
         HitPoints -= damage;
-        healthBar.GetComponent<HealthBar>().SetHealth(HitPoints);
+        healthUI.GetComponent<HealthBar>().SetHealth(HitPoints);
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
             MobManager.instance.ChangeRealm();
