@@ -5,7 +5,8 @@ using Pathfinding;
 
 public class Mob : MonoBehaviour {
 
-    public int damage;
+
+    public float damage;
     AIPath _AIPath;
     Animator _Animator;
 

@@ -10,20 +10,24 @@ public class HealthBar : MonoBehaviour {
     public Color fullColor;
     public Color lowColor;
 
+    [SerializeField]
+    private Image fillAmount;
+    private int maxValue = 100;
+
     private void Start() {
-        slider = GetComponent<Slider>();
-    }
-
-    public void SetMaxHealth(int health) {
-        slider.maxValue = health;
-        slider.value = health;
-    }
-
-    public void SetHealth(int health) {
-        slider.value = health;
+        fillAmount = GameObject.Find("HealthOverlay").GetComponent<Image>();
     }
 
     public void ChangeColor() {
         fill.color = Color.Lerp(lowColor, fullColor, slider.value / 50);
+    }
+
+    public void SetMaxHealth(int health) {
+        maxValue = health;
+        fillAmount.fillAmount = health / maxValue;
+    }
+
+    public void SetHealth(int health) {
+        fillAmount.fillAmount = health / maxValue;
     }
 }
