@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class MapGenerator : MonoBehaviour {
 
@@ -15,17 +16,16 @@ public class MapGenerator : MonoBehaviour {
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject spawner;
 
-    //private bool[,] obstacleMap;
     private Dictionary<Vector2, bool> obstacleMap = new Dictionary<Vector2, bool>();
 
     private void Start() {
-        //obstacleMap = new bool[width+1, height+1];
-
         GenerateWalls();
         GenerateFloor();
         GenerateEmptyMap();
         GenerateObstacles();
         GenerateSpawners();
+
+        AstarPath.active.Scan();
     }
 
     private void GenerateWalls() {

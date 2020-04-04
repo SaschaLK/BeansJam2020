@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9119593405034062345}
   - component: {fileID: 9119593405034062350}
   - component: {fileID: 9119593405034062351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlaceholderSpriteWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
