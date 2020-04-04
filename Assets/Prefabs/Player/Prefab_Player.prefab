@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5728698454081022382}
   - component: {fileID: 8569924751095635195}
-  - component: {fileID: 7037282919281893380}
+  - component: {fileID: 1661783345427006415}
   m_Layer: 10
   m_Name: Player_Sprite
   m_TagString: Untagged
@@ -204,7 +204,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7037282919281893380
+--- !u!95 &1661783345427006415
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ Animator:
   m_GameObject: {fileID: 6624284725172017496}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 31b0ad1d8d4c9994b8040699d25c3e7c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 44230db0e1f106d458bd0e59cfbf9508, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -278,6 +278,7 @@ MonoBehaviour:
   ProjectileStone: {fileID: 0}
   ProjectileBomb: {fileID: 0}
   IsWalking: 1
+  IsDragging: 0
 --- !u!50 &7940696555547261239
 Rigidbody2D:
   serializedVersion: 4
