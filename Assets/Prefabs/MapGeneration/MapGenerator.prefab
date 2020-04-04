@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2424474068967468874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2424474068967468873}
+  - component: {fileID: 2424474068967468872}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2424474068967468873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424474068967468874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2424474068967468872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424474068967468874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225d960d636d3fe4e8a1c6611333ed1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 60
+  height: 40
+  thresholdObstacle: 0.671
+  thresholdSpawner: 0.995
+  wallTilesNESW:
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  - {fileID: 9119593405034062348, guid: eb9dd83024885d7478aa9f3037b2bd26, type: 3}
+  floorTiles:
+  - {fileID: 5396408984054461636, guid: 6d7125951fd595f47b386fb2e482251d, type: 3}
+  - {fileID: 5396408984054461636, guid: 28133ed492ffdc44daa1b7381af551f5, type: 3}
+  - {fileID: 5396408984054461636, guid: 3b2d035259823bf4385c0c07d4d03f79, type: 3}
+  - {fileID: 5396408984054461636, guid: 570f41306edfe9541b35b3c8b4f32edb, type: 3}
+  obstacles:
+  - {fileID: 9119593405034062348, guid: 7c0b9c06ce056614b9525d675eb27137, type: 3}
+  spawner: {fileID: 5396408984054461636, guid: 7919de35abd1fde429134ea6359b3799, type: 3}
+  player: {fileID: 0}
