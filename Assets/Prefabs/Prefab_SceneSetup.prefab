@@ -112,6 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1973542334876252986}
   - component: {fileID: 2011604779}
+  - component: {fileID: 6142985032975353806}
   m_Layer: 0
   m_Name: Prefab_SceneSetup
   m_TagString: Untagged
@@ -151,6 +152,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProjectilesGroup: {fileID: 1863635613}
+--- !u!114 &6142985032975353806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430109953355169549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eeb75eebbd3b2d458d2ddbdfa66004b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMix: {fileID: 24100000, guid: dbee7aab071d7c048a2b07113c728922, type: 2}
+  menu: {fileID: 24500006, guid: dbee7aab071d7c048a2b07113c728922, type: 2}
+  dead: {fileID: -2032509311696140687, guid: dbee7aab071d7c048a2b07113c728922, type: 2}
+  alive: {fileID: 6504792607465363818, guid: dbee7aab071d7c048a2b07113c728922, type: 2}
 --- !u!1 &7631782918152715731
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7631782918413243588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -5.1755605, y: -6.622246, z: 17.714083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1973542334876252986}
@@ -461,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7631782919941265367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -9.999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7631782918152715732}
