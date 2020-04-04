@@ -38,6 +38,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     Rigidbody2D _Rigidbody;
 
+    public bool IsWalking;
+
+    Animator _Animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +58,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         CurrentProjectile = Projectiles.FirstOrDefault();
+
+        _Animator = this.GetComponentInChildren<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -78,6 +85,10 @@ public class PlayerBehaviour : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 
         _Movement = new Vector2(horizontal, vertical);
+
+        IsWalking = _Movement != Vector2.zero;
+        _Animator.SetBool("IsWalking", IsWalking);
+        Debug.Log(_Animator.GetBool("IsWalking"));
 
         //Calculates target movement vector
         switch (MovementType)
