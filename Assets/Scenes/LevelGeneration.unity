@@ -271,6 +271,7 @@ MonoBehaviour:
   obstacles:
   - {fileID: 9119593405034062348, guid: 7c0b9c06ce056614b9525d675eb27137, type: 3}
   spawner: {fileID: 5396408984054461636, guid: 7919de35abd1fde429134ea6359b3799, type: 3}
+  player: {fileID: 1272646499}
 --- !u!1001 &1042382086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,8 +339,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_SceneSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 7631782918325103864, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: MovementType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631782918413243591, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631782919941265369, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.999998
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
+--- !u!1 &1272646499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7631782918325103863, guid: babde8cc99ea2bc45949fe3cd8647000,
+    type: 3}
+  m_PrefabInstance: {fileID: 1042382086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1624950358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7631782918325103865, guid: babde8cc99ea2bc45949fe3cd8647000,
@@ -376,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1624950358}
+  spawning: 1
 --- !u!4 &1631903111
 Transform:
   m_ObjectHideFlags: 0

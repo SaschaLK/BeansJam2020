@@ -15,6 +15,8 @@ public class MapGenerator : MonoBehaviour {
     public List<GameObject> floorTiles = new List<GameObject>();
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject spawner;
+    public GameObject player;
+    private bool playerPositionSet = false;
 
     private Dictionary<Vector2, bool> obstacleMap = new Dictionary<Vector2, bool>();
 
@@ -97,12 +99,21 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void GenerateSpawners() {
-        foreach(KeyValuePair<Vector2, bool> tile in obstacleMap) {
+        List<Vector2> openTiles = new List<Vector2>();
+
+        foreach (KeyValuePair<Vector2, bool> tile in obstacleMap) {
             if (!tile.Value) {
                 if(Random.Range(0f,1f) > thresholdSpawner) {
                     Instantiate(spawner, new Vector3(tile.Key.x, tile.Key.y), Quaternion.identity, transform);
                 }
+                else {
+                    openTiles.Add(tile.Key);
+                }
             }
         }
+
+        int selectVector = Random.Range(0, openTiles.Count);
+        Vector2 playerSpawn = openTiles[selectVector];
+        player.transform.position = playerSpawn;
     }
 }
