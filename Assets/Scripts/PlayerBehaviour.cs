@@ -63,6 +63,8 @@ public class PlayerBehaviour : MonoBehaviour
         CurrentProjectile = Projectiles.FirstOrDefault();
 
         _Animator = this.GetComponentInChildren<Animator>();
+
+        MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
         
     }
 
