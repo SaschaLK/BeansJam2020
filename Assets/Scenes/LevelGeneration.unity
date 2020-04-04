@@ -367,6 +367,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1613065699}
+    - target: {fileID: 2424474068967468872, guid: 533ddab544e11b24297daed757dd0405,
+        type: 3}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 2718001258831460439, guid: 08f0626ad28a6d141a00c4075cad1c70,
+        type: 3}
+    - target: {fileID: 2424474068967468872, guid: 533ddab544e11b24297daed757dd0405,
+        type: 3}
+      propertyPath: lightThreshold
+      value: 0.892
+      objectReference: {fileID: 0}
     - target: {fileID: 2424474068967468873, guid: 533ddab544e11b24297daed757dd0405,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,9 +13,20 @@ public class MapGenerator : MonoBehaviour {
 
     public List<GameObject> wallTilesNESW = new List<GameObject>();
     public List<GameObject> floorTiles = new List<GameObject>();
-    public List<GameObject> obstacles = new List<GameObject>();
+    public List<GameObject> obstacles1 = new List<GameObject>();
+    public List<GameObject> obstacles2 = new List<GameObject>();
+    public List<GameObject> obstacles3 = new List<GameObject>();
+    public List<GameObject> obstacles4 = new List<GameObject>();
+    public List<GameObject> obstacles5 = new List<GameObject>();
+    public List<GameObject> obstacles6 = new List<GameObject>();
+    public List<GameObject> obstacles7 = new List<GameObject>();
+    public List<GameObject> obstacles8 = new List<GameObject>();
+    public List<GameObject> obstacles9 = new List<GameObject>();
+    public List<GameObject> obstacles10 = new List<GameObject>();
+    public List<GameObject> obstacles11 = new List<GameObject>();
+    public List<GameObject> obstacles12 = new List<GameObject>();
     public GameObject spawner;
-    public GameObject light;
+    public GameObject torch;
     [Range(0,1)] public float lightThreshold;
     public GameObject player;
 
@@ -24,8 +35,9 @@ public class MapGenerator : MonoBehaviour {
     private void Start() {
         GenerateWalls();
         GenerateFloor();
-        GenerateEmptyMap();
-        GenerateObstacles();
+        GenerateDictionary();
+        GenerateObstacleMap();
+        PlaceObstacles();
         GenerateSpawners();
         GenerateLights();
 
@@ -81,7 +93,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    private void GenerateEmptyMap() {
+    private void GenerateDictionary() {
         for (int x = 0; x <= width; x++) {
             for (int y = 0; y <= height; y++) {
                 obstacleMap.Add(new Vector2(x, y), false);
@@ -89,15 +101,25 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    private void GenerateObstacles() {
+    private void GenerateObstacleMap() {
         float seed = Random.Range(0f, 1f);
         for (int x = 0; x <= width; x++) {
             for (int y = 0; y <= height; y++) {
                 if (Mathf.PerlinNoise(x * 0.1f + seed, y * 0.1f + seed) > thresholdObstacle) {
                     obstacleMap[new Vector2(x, y)] = true;
-                    Instantiate(obstacles[0], new Vector3(x, y), Quaternion.identity, transform);
+                    //Instantiate(obstacles1[0], new Vector3(x, y), Quaternion.identity, transform);
                 }
             }
+        }
+    }
+
+    private void PlaceObstacles() {
+        foreach(KeyValuePair<Vector2,bool> obstacle in obstacleMap) {
+            Vector2 tempNorth = obstacle.Key + Vector2.up;
+            Vector2 tempEast = obstacle.Key + Vector2.right;
+            Vector2 tempSouth = obstacle.Key + Vector2.down;
+            Vector2 tempWest = obstacle.Key + Vector2.left;
+            Debug.Log(obstacleMap[new Vector2(-1, -1)]);
         }
     }
 
@@ -148,7 +170,7 @@ public class MapGenerator : MonoBehaviour {
             float tempChance = Random.Range(0f, 1f);
             if (tempChance > lightThreshold) {
                 Debug.Log("int light");
-                Instantiate(light, possibleLight, Quaternion.identity, transform);
+                Instantiate(torch, possibleLight, Quaternion.identity, transform);
             }
         }
     }
