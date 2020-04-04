@@ -12,24 +12,21 @@ public class MobSpawner : MonoBehaviour {
 
     private void Start() {
         spawnDelayStart = spawnDelay;
+
         StartCoroutine(SpawnMob());
     }
 
     private IEnumerator SpawnMob() {
-        while (true)
-        {
-            if (MobManager.instance.spawning)
-            {
+        while (true) {
+            if (MobManager.instance.spawning) {
                 Instantiate(mobs[Random.Range(0, mobs.Count)], transform.position, Quaternion.identity, transform);
                 MobManager.instance.spawnableMobs--;
             }
             yield return new WaitForSecondsRealtime(spawnDelay);
-            if (spawnDelay - spawnIncrement > 0)
-            {
+            if (spawnDelay - spawnIncrement > 0) {
                 spawnDelay -= spawnIncrement;
             }
-            if (MobManager.instance.spawnableMobs <= 0)
-            {
+            if (MobManager.instance.spawnableMobs <= 0) {
                 spawnDelay = spawnDelayStart;
                 MobManager.instance.spawning = false;
             }

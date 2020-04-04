@@ -8,7 +8,7 @@ public class MapGenerator : MonoBehaviour {
     public int width;
     public int height;
 
-    [Range(0,1)] public float thresholdObstacle;
+    [Range(0, 1)] public float thresholdObstacle;
     [Range(0, 1)] public float thresholdSpawner;
 
     public List<GameObject> wallTilesNESW = new List<GameObject>();
@@ -30,8 +30,8 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void GenerateWalls() {
-        for(int x = -1; x <= width +1; x++) {
-            for(int y = -1; y <= height +1; y++) {
+        for (int x = -1; x <= width + 1; x++) {
+            for (int y = -1; y <= height + 1; y++) {
                 //Northern walls
                 if (x != -1 && x != width + 1 && y == height + 1) {
                     Instantiate(wallTilesNESW[0], new Vector3(x, y), Quaternion.identity, transform);
@@ -69,8 +69,8 @@ public class MapGenerator : MonoBehaviour {
     }
 
     private void GenerateFloor() {
-        for(int x = 0; x <= width; x++) {
-            for(int y = 0; y <= height; y++) {
+        for (int x = 0; x <= width; x++) {
+            for (int y = 0; y <= height; y++) {
                 int selection = Random.Range(0, floorTiles.Count);
                 Instantiate(floorTiles[selection], new Vector3(x, y), Quaternion.identity, transform);
             }
@@ -87,11 +87,11 @@ public class MapGenerator : MonoBehaviour {
 
     private void GenerateObstacles() {
         float seed = Random.Range(0f, 1f);
-        for(int x = 0; x <= width; x++) {
-            for(int y = 0; y <= height; y++) {
-                if(Mathf.PerlinNoise(x * 0.1f + seed, y * 0.1f + seed) > thresholdObstacle) {
-                    obstacleMap[new Vector2(x,y)] = true;
-                    Instantiate(obstacles[0], new Vector3(x,y), Quaternion.identity, transform);
+        for (int x = 0; x <= width; x++) {
+            for (int y = 0; y <= height; y++) {
+                if (Mathf.PerlinNoise(x * 0.1f + seed, y * 0.1f + seed) > thresholdObstacle) {
+                    obstacleMap[new Vector2(x, y)] = true;
+                    Instantiate(obstacles[0], new Vector3(x, y), Quaternion.identity, transform);
                 }
             }
         }
@@ -100,19 +100,19 @@ public class MapGenerator : MonoBehaviour {
     private void GenerateSpawners() {
         List<Vector2> openTiles = new List<Vector2>();
 
-            foreach (KeyValuePair<Vector2, bool> tile in obstacleMap) {
+        foreach (KeyValuePair<Vector2, bool> tile in obstacleMap) {
             if (!tile.Value) {
-                if(Random.Range(0f,1f) > thresholdSpawner) {
+                if (Random.Range(0f, 1f) > thresholdSpawner) {
                     Instantiate(spawner, new Vector3(tile.Key.x, tile.Key.y), Quaternion.identity, transform);
                 }
-                    else
-                    {
-                        openTiles.Add(tile.Key);
-                    }
+                else {
+                    openTiles.Add(tile.Key);
                 }
+            }
         }
-            int selectVector = Random.Range(0, openTiles.Count);
-            Vector2 playerSpawn = openTiles[selectVector];
-            player.transform.position = playerSpawn;
-        }
+
+        int selectVector = Random.Range(0, openTiles.Count);
+        Vector2 playerSpawn = openTiles[selectVector];
+        player.transform.position = playerSpawn;
+    }
 }
