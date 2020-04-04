@@ -54,7 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
     //float _DraggingTime;
 
     Animator _Animator;
-    private Vector2 _ShootingVector;
+    private Vector2 _DraggingVector;
 
     // Start is called before the first frame update
     void Start()
@@ -128,7 +128,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (_RemainCoolDown == 0)
             {
-                //Fire();
+                Fire();
             }
         }
 
@@ -136,10 +136,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             //_DraggingTime += dt;
             _DraggingPointEnd = mouseWorldPosition;
-            _ShootingVector = _DraggingPointStart - _DraggingPointEnd;
+            _DraggingVector = _DraggingPointStart - _DraggingPointEnd;
+
+            var intensity = _DraggingVector.magnitude;
+            var shootingVector = (_DraggingPointStart - (Vector2)transform.position).normalized;
             //Debug.DrawLine((Vector2)transform.position, ((Vector2)transform.position + _ShootingVector.normalized));
             //Debug.DrawLine(_DraggingPointStart, _DraggingPointEnd, Color.blue);
-            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, _DraggingPointStart, _DraggingPointEnd);
+            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, _DraggingPointStart, _DraggingPointStart - shootingVector * intensity);
             //UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, (Vector2)transform.position, (_ShootingVector - (Vector2)transform.position));
         }
         else
