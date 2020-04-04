@@ -33,6 +33,21 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &-2032509311696140687
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DeathRealm
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: ef1a6e52fac79e0409385731e0245515
+  m_FloatValues:
+    ce1b36501b2562846ad7397c462e1ebb: 0
+    88982232420f2974ab5b272b65171609: 0
+    0d4436d20dab39547956fd8f0ad680db: -80
+    75ab2a5d0e457cf428309a0e23da2e95: -80
+  m_TransitionOverrides: {}
 --- !u!243 &-905256290890527418
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -63,11 +78,17 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 6504792607465363818}
+  - {fileID: -2032509311696140687}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 88982232420f2974ab5b272b65171609
+    name: music_vol
+  - guid: 697eb00ca6b07b646bf13c7b0b656dfa
+    name: sfx_vol
   m_AudioMixerGroupViews:
   - guids:
     - 208da4d98be972a47bb7b4abb6f74ef0
@@ -120,10 +141,12 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Menu
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 4acac3ac0eb961c4489f7b13dc050c00
-  m_FloatValues: {}
+  m_FloatValues:
+    ce1b36501b2562846ad7397c462e1ebb: -80
+    75ab2a5d0e457cf428309a0e23da2e95: -80
   m_TransitionOverrides: {}
 --- !u!244 &1688358680879165283
 AudioMixerEffectController:
@@ -241,3 +264,18 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!245 &6504792607465363818
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OverRealm
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 1985db482e18c47448662ef55b0b608d
+  m_FloatValues:
+    ce1b36501b2562846ad7397c462e1ebb: -80
+    88982232420f2974ab5b272b65171609: -5
+    0d4436d20dab39547956fd8f0ad680db: -80
+    697eb00ca6b07b646bf13c7b0b656dfa: -5
+  m_TransitionOverrides: {}

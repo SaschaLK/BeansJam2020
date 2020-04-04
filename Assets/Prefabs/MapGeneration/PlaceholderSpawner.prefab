@@ -96,6 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobs:
   - {fileID: 8092613148269010385, guid: a8818caec24a2ab45a5b1ab16a1cb925, type: 3}
-  spawnableMobs: 20
   spawnDelay: 2
-  spawnIncrement: 0.2

@@ -286,25 +286,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &513190148
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631782918325103863}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7631782918413243588
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,11 +530,6 @@ PrefabInstance:
       propertyPath: m_AlphaBlendOnOverlap
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7037282919281893380, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7940696555216050683, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
         type: 3}
       propertyPath: m_Layer
@@ -620,11 +596,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8224477619605229550, guid: 1e130f076d15a9842976f5c9dedc6b66,
         type: 3}
-    - target: {fileID: 7940696555547261237, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
-        type: 3}
-      propertyPath: IsWalking
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7940696555547261242, guid: 4ffdd0b335c826940b67b5cdf8c899d8,
         type: 3}
       propertyPath: m_Name
