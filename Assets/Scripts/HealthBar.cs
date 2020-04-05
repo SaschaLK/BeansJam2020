@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField]
     private Image fillAmount;
+
     private int maxHealth = 100;
 
     private void Start() {
