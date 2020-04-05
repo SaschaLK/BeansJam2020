@@ -316,6 +316,7 @@ public class PlayerBehaviour : MonoBehaviour
             //TO_DO Change to GameManager.instance.ChangeRealm()
             if (MobManager.instance != null)
             {
+                HitPoints = 100;
                 MobManager.instance.ChangeRealm();
             }
         }

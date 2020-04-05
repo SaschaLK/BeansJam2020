@@ -49,3 +49,4 @@ MonoBehaviour:
   spawnableMobs: 20
   mobs: []
   kills: 0
+  healthbar: {fileID: 0}
