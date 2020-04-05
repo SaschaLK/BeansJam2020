@@ -22,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float StrafeSpeed = 2f;
 
     public int HitPoints = 100;
-    public HealthBar healthUI;
+    HealthBar _UIHealthBar;
 
     public MovementType MovementType = MovementType.Global;
 
@@ -56,6 +56,11 @@ public class PlayerBehaviour : MonoBehaviour
     Animator _Animator;
     private Vector2 _DraggingVector;
 
+    public AudioClip[] AudioClipFootSteps;
+    public AudioSource AudioSourceFootSteps;
+    public AudioSource AudioSourceShootSlingShot;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,20 +81,29 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator = this.GetComponentInChildren<Animator>();
 
         MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
-        if (healthUI != null)
-        {
-            healthUI.SetMaxHealth(HitPoints);
-        }
+        
         if (AudioController.Instance != null)
         {
-            AudioController.Instance.ChangeTheme(TrackThemes.alive);
+            AudioController.Instance.ChangeTheme(TrackThemes.Alive);
         }
+
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (_UIHealthBar == null)
+        {
+            if (GameManager.Instance != null)
+            {
+                _UIHealthBar = GameManager.Instance.HealthBar.GetComponent<HealthBar>();
+                _UIHealthBar.SetMaxHealth(HitPoints);
+            }
+        }
+
+        //==== Movement
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
 
@@ -132,6 +146,8 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
+        _PositionLookAt = mouseWorldPosition;
+
         if (IsDragging)
         {
             //_DraggingTime += dt;
@@ -139,20 +155,16 @@ public class PlayerBehaviour : MonoBehaviour
             _DraggingVector = _DraggingPointStart - _DraggingPointEnd;
 
             var intensity = _DraggingVector.magnitude;
-            var shootingVector = (_DraggingPointStart - (Vector2)transform.position).normalized;
-            //Debug.DrawLine((Vector2)transform.position, ((Vector2)transform.position + _ShootingVector.normalized));
-            //Debug.DrawLine(_DraggingPointStart, _DraggingPointEnd, Color.blue);
-            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, _DraggingPointStart, _DraggingPointStart - shootingVector * intensity);
-            //UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, (Vector2)transform.position, (_ShootingVector - (Vector2)transform.position));
-        }
-        else
-        {
-            _PositionLookAt = mouseWorldPosition;
-        }
+            var shootingVector = (_PositionLookAt- (Vector2)transform.position).normalized;
+            var from = (_PositionLookAt + shootingVector * intensity);
+            var to = _PositionLookAt - shootingVector * intensity;
 
-        //Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
-        //Debug.Log(_DraggingPointEnd.ToString());
-        //Debug.Log(_DraggingPointStart.ToString());
+
+            Debug.DrawLine(from, to, Color.yellow);
+
+            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, from, to);
+        }
+        
         //Calculates final rotation
         var angle = this.AngleBetweenTwoPoints(_PositionLookAt, transform.position);
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
@@ -164,6 +176,20 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
 
+        //==== Audio
+        if (IsWalking)
+        {
+            if (AudioSourceFootSteps.isPlaying == false)
+            {
+                AudioSourceFootSteps.clip = AudioClipFootSteps[Random.Range(0, AudioClipFootSteps.Length - 1)];
+                
+                AudioSourceFootSteps.PlayDelayed(0f);
+            }
+        }
+        else
+        {
+            AudioSourceFootSteps.Stop();
+        }
     }
 
     public void UpdateGameObjectBetweenTwoPoints(GameObject prefab, Vector2 from, Vector2 to)
@@ -200,11 +226,16 @@ public class PlayerBehaviour : MonoBehaviour
     public void Fire()
     {
         var projectile = Instantiate(CurrentProjectile.Item, GameManager.Instance.ProjectilesGroup.transform);
+        var intensity = Mathf.Abs(_DraggingVector.magnitude);
 
         projectile.transform.position += transform.position + transform.up * 1.5f;
         var projectileBehaviour = projectile.GetComponent<ProjectileBehaviour>();
         projectileBehaviour.Direction = (_PositionLookAt - (Vector2)transform.position).normalized;
-        projectileBehaviour.SetVelocity(20);    //m/s
+        var velocity = 10 + Mathf.Min(20f, intensity * 20);
+        projectileBehaviour.SetVelocity(velocity);    //m/s
+
+        //Audio
+        AudioSourceShootSlingShot.PlayDelayed(0);
 
         StartCoroutine(DoCooldown(CurrentProjectile.CoolDown));
     }
@@ -229,7 +260,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 9){
-            //TakeDamage(collision.gameObject);
+            TakeDamage(collision.gameObject);
         }
     }
 
@@ -238,21 +269,26 @@ public class PlayerBehaviour : MonoBehaviour
         var damage = 0;
 
         var mob = collisionObject.GetComponent<Mob>();
+        
         if (mob != null)
         {
-            damage = mob.damage;
+            damage = mob.Damage + (int)Random.Range(0f, 24f);
         }
 
         HitPoints -= damage;
 
-        if (healthUI != null)
+        if (_UIHealthBar != null)
         {
-            var healthBar = healthUI.GetComponent<HealthBar>();
+            var healthBar = _UIHealthBar.GetComponent<HealthBar>();
             healthBar.SetHealth(HitPoints);
         }
+
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
-            MobManager.instance.ChangeRealm();
+            if (MobManager.instance != null)
+            {
+                MobManager.instance.ChangeRealm();
+            }
         }
     }
 }

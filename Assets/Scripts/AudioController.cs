@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum TrackThemes {menu, alive, dead};
+public enum TrackThemes {Menu, Alive, Dead};
 public class AudioController : MonoBehaviour
 {
 
     public static AudioController Instance;
 
     [SerializeField]
-    private AudioMixer mainMix;
+    private AudioMixer _AudioMixer_MainMix;
 
     [SerializeField]
-    private AudioMixerSnapshot menu;
+    private AudioMixerSnapshot _AudioMixer_Menu;
+
     [SerializeField]
-    private AudioMixerSnapshot dead;
+    private AudioMixerSnapshot _AudioMixer_Dead;
+
     [SerializeField]
-    private AudioMixerSnapshot alive;
+    private AudioMixerSnapshot _AudioMixer_Alive;
 
     public void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         DontDestroyOnLoad(this);    
     }
 
@@ -30,7 +35,7 @@ public class AudioController : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVol",music_vol);
         if (music_vol <= -20.0F)
             music_vol = -80.0F;
-        mainMix.SetFloat("music_vol",music_vol);
+        _AudioMixer_MainMix.SetFloat("music_vol",music_vol);
     }
 
     public void setSFXVol(float sfx_vol)
@@ -38,22 +43,21 @@ public class AudioController : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVol", sfx_vol);
         if (sfx_vol <= -20.0F)
             sfx_vol = -80.0F;
-        mainMix.SetFloat("sfx_vol", sfx_vol);
+        _AudioMixer_MainMix.SetFloat("sfx_vol", sfx_vol);
     }
 
     public void ChangeTheme(TrackThemes theme)
     {
         switch (theme)
         {
-            case TrackThemes.menu:
-                menu.TransitionTo(1.5F); 
+            case TrackThemes.Menu:
+                _AudioMixer_Menu.TransitionTo(1.5F); 
                 break;
-            case TrackThemes.dead:
-                dead.TransitionTo(1.5F);
+            case TrackThemes.Dead:
+                _AudioMixer_Dead.TransitionTo(1.5F);
                 break;
-            case TrackThemes.alive:
             default:
-                alive.TransitionTo(1.5F);
+                _AudioMixer_Alive.TransitionTo(1.5F);
                 break;
 
         }

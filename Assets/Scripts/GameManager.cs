@@ -8,12 +8,19 @@ public class GameManager : MonoBehaviour
     public GameObject ProjectilesGroup;
     public static GameManager Instance;
 
+    public GameObject HealthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         if (GameManager.Instance == null)
         {
             GameManager.Instance = this;
+        }
+
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.ChangeTheme(TrackThemes.Alive);
         }
     }
 
