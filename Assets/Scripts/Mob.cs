@@ -63,6 +63,9 @@ public class Mob : MonoBehaviour {
 
     IEnumerator DoDying(float timeToDeath)
     {
+        print(GetComponentInChildren<Animator>().name);
+        if (GetComponentInChildren<Animator>().name == "Mob_Sprite01")
+        GetComponent<Rigidbody2D>().simulated = false;
         TimeToDeath = timeToDeath;
 
         while (TimeToDeath > 0)

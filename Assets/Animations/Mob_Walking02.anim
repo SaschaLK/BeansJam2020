@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mob_Walking
+  m_Name: Mob_Walking02
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: c47f2142ba3cb404d8d5b84581dc3b10, type: 3}
+      value: {fileID: 21300000, guid: bae3c30e5e247e44ca5f254910dc37f6, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: bc69052370eb1d14a93f5e7a90e9ff73, type: 3}
+      value: {fileID: 21300000, guid: 9d825a7419dc09649acf1d5f6f6210c1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: c47f2142ba3cb404d8d5b84581dc3b10, type: 3}
-    - {fileID: 21300000, guid: bc69052370eb1d14a93f5e7a90e9ff73, type: 3}
+    - {fileID: 21300000, guid: bae3c30e5e247e44ca5f254910dc37f6, type: 3}
+    - {fileID: 21300000, guid: 9d825a7419dc09649acf1d5f6f6210c1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
