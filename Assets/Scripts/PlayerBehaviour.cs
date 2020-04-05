@@ -59,6 +59,8 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioClip[] AudioClipFootSteps;
     public AudioSource AudioSourceFootSteps;
     public AudioSource AudioSourceShootSlingShot;
+
+    public GameObject SpriteHealthBar;
     
 
     // Start is called before the first frame update
@@ -102,6 +104,8 @@ public class PlayerBehaviour : MonoBehaviour
                 _UIHealthBar.SetMaxHealth(HitPoints);
             }
         }
+
+        
 
         //==== Movement
         var horizontal = Input.GetAxisRaw("Horizontal");
@@ -175,6 +179,13 @@ public class PlayerBehaviour : MonoBehaviour
 
         _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
+
+        //==== HealthBar
+        if (SpriteHealthBar != null)
+        {
+            SpriteHealthBar.transform.position = (Vector2)transform.position + Vector2.up * 2.0f;
+            SpriteHealthBar.transform.rotation = Quaternion.identity;
+        }
 
         //==== Audio
         if (IsWalking)
