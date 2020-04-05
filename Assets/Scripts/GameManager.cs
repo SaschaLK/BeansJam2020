@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject ProjectilesGroup;
     public static GameManager Instance;
 
+    public GameObject HealthBar;
+
     // Start is called before the first frame update
     void Start()
     {

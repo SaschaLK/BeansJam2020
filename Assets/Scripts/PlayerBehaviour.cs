@@ -22,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float StrafeSpeed = 2f;
 
     public int HitPoints = 100;
-    public HealthBar healthUI;
+    HealthBar _UIHealthBar;
 
     public MovementType MovementType = MovementType.Global;
 
@@ -58,6 +58,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public AudioClip[] AudioClipFootSteps;
     public AudioSource AudioSourceFootSteps;
+    public AudioSource AudioSourceShootSlingShot;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -79,10 +81,7 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator = this.GetComponentInChildren<Animator>();
 
         MovementType = (MovementType)PlayerPrefs.GetInt("MovementPreference");
-        if (healthUI != null)
-        {
-            healthUI.SetMaxHealth(HitPoints);
-        }
+        
         if (AudioController.Instance != null)
         {
             AudioController.Instance.ChangeTheme(TrackThemes.Alive);
@@ -95,6 +94,16 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_UIHealthBar == null)
+        {
+            if (GameManager.Instance != null)
+            {
+                _UIHealthBar = GameManager.Instance.HealthBar.GetComponent<HealthBar>();
+                _UIHealthBar.SetMaxHealth(HitPoints);
+            }
+        }
+
+        //==== Movement
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
 
@@ -137,6 +146,8 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
 
+        _PositionLookAt = mouseWorldPosition;
+
         if (IsDragging)
         {
             //_DraggingTime += dt;
@@ -144,16 +155,31 @@ public class PlayerBehaviour : MonoBehaviour
             _DraggingVector = _DraggingPointStart - _DraggingPointEnd;
 
             var intensity = _DraggingVector.magnitude;
-            var shootingVector = (_DraggingPointStart - (Vector2)transform.position).normalized;
+            //var shootingVector = (_DraggingPointStart - (Vector2)transform.position).normalized;
+            //var from = (Vector2)transform.position;
+            //var to = (shootingVector - from);
+
             //Debug.DrawLine((Vector2)transform.position, ((Vector2)transform.position + _ShootingVector.normalized));
             //Debug.DrawLine(_DraggingPointStart, _DraggingPointEnd, Color.blue);
-            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, _DraggingPointStart, _DraggingPointStart - shootingVector * intensity);
+
+
+            //var from = _PositionLookAt;
+            //var to = from - shootingVector * intensity;
+
+            var shootingVector = (_PositionLookAt- (Vector2)transform.position).normalized;
+            var from = (_PositionLookAt + shootingVector * intensity);
+            var to = _PositionLookAt - shootingVector * intensity;
+
+
+            Debug.DrawLine(from, to, Color.yellow);
+
+            UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, from, to);
             //UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, (Vector2)transform.position, (_ShootingVector - (Vector2)transform.position));
         }
-        else
-        {
-            _PositionLookAt = mouseWorldPosition;
-        }
+        //else
+        //{
+            //_PositionLookAt = mouseWorldPosition;
+        //}
 
         //Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
         //Debug.Log(_DraggingPointEnd.ToString());
@@ -169,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
 
-        //Audio
+        //==== Audio
         if (IsWalking)
         {
             if (AudioSourceFootSteps.isPlaying == false)
@@ -225,6 +251,9 @@ public class PlayerBehaviour : MonoBehaviour
         projectileBehaviour.Direction = (_PositionLookAt - (Vector2)transform.position).normalized;
         projectileBehaviour.SetVelocity(20);    //m/s
 
+        //Audio
+        AudioSourceShootSlingShot.PlayDelayed(0);
+
         StartCoroutine(DoCooldown(CurrentProjectile.CoolDown));
     }
 
@@ -264,11 +293,12 @@ public class PlayerBehaviour : MonoBehaviour
 
         HitPoints -= damage;
 
-        if (healthUI != null)
+        if (_UIHealthBar != null)
         {
-            var healthBar = healthUI.GetComponent<HealthBar>();
+            var healthBar = _UIHealthBar.GetComponent<HealthBar>();
             healthBar.SetHealth(HitPoints);
         }
+
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
             MobManager.instance.ChangeRealm();
