@@ -18,6 +18,7 @@ public class MobSpawner : MonoBehaviour {
 
     private IEnumerator SpawnMob() {
         while (true) {
+            MobManager.instance.respawning = false;
             if (MobManager.instance.spawning) {
                 Instantiate(mobs[Random.Range(0, mobs.Count)], transform.position, Quaternion.identity, transform);
                 MobManager.instance.spawnableMobs--;

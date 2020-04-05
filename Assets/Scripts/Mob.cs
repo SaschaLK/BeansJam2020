@@ -70,7 +70,7 @@ public class Mob : MonoBehaviour {
             TimeToDeath -= Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-
+        Killed();
         Destroy(this.gameObject);
     }
 }
