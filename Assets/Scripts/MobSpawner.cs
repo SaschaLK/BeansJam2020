@@ -19,8 +19,12 @@ public class MobSpawner : MonoBehaviour {
     private IEnumerator SpawnMob() {
         while (true) {
             MobManager.instance.respawning = false;
-            if (MobManager.instance.spawning) {
-                Instantiate(mobs[Random.Range(0, mobs.Count)], transform.position, Quaternion.identity, transform);
+            if (MobManager.instance.spawning && MobManager.instance.isOverworld) {
+                Instantiate(mobs[0], transform.position, Quaternion.identity, transform);
+                MobManager.instance.spawnableMobs--;
+            }
+            else if(MobManager.instance.spawning && !MobManager.instance.isOverworld) {
+                Instantiate(mobs[1], transform.position, Quaternion.identity, transform);
                 MobManager.instance.spawnableMobs--;
             }
             yield return new WaitForSecondsRealtime(spawnDelay);
