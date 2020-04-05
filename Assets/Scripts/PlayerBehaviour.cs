@@ -82,7 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (AudioController.Instance != null)
         {
-            AudioController.Instance.ChangeTheme(TrackThemes.alive);
+            AudioController.Instance.ChangeTheme(TrackThemes.Alive);
         }
     }
 

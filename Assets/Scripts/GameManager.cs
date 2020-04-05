@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         {
             GameManager.Instance = this;
         }
+
+        if (AudioController.Instance != null)
+        {
+            AudioController.Instance.ChangeTheme(TrackThemes.Alive);
+        }
     }
 
     // Update is called once per frame
