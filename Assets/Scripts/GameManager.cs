@@ -29,4 +29,25 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
+    internal void AddForceAtPosition(Vector2 position, int force, float radius)
+    {
+        var bodies = this.GetComponentsInChildren<Rigidbody2D>();
+
+        for (var idx = 0; idx < bodies.Length; idx++)
+        {
+            var body = bodies[idx];
+            var direction = (body.position - position);
+            var intensity = Mathf.Max(0f, 1 - (direction.magnitude / radius));
+
+            if (intensity == 0)
+            {
+                continue;
+            }
+
+            var baseFoce = direction.normalized * intensity * force;
+            body.AddForceAtPosition(baseFoce, position, ForceMode2D.Impulse);
+        }
+    }
 }

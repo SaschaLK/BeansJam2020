@@ -54,7 +54,10 @@ public class Mob : MonoBehaviour {
             _AIPath.canMove = false;
             StartCoroutine(DoDying(1.2f));
             _Animator.SetBool("IsDying", IsDying);
-            MobManager.instance.KillMob(this.gameObject);
+            if (MobManager.instance != null)
+            {
+                MobManager.instance.KillMob(this.gameObject);
+            }
         }
     }
 
