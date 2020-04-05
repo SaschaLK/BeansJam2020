@@ -22,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float StrafeSpeed = 2f;
 
     public int HitPoints = 100;
-    HealthBar _UIHealthBar;
+    public HealthBar _UIHealthBar;
 
     public MovementType MovementType = MovementType.Global;
 
