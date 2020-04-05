@@ -54,6 +54,11 @@ public class MobManager : MonoBehaviour {
             }
         }
 
+        foreach(GameObject mob in mobs) {
+            mob.SetActive(false);
+        }
+        mobs.Clear();
+
         MapGenerator.instance.ChangeRealm();
         healthbar.SetHealth(100);
         spawnableMobs = kills;
