@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class Mob : MonoBehaviour {
 
+    public int HitPoints = 50;
+    public int Damage;
 
-    public int damage;
+    public bool IsDying;
+
     AIPath _AIPath;
     Animator _Animator;
+
+    public float TimeToDeath;
 
     private void Start() {
         if (MobManager.instance != null && MobManager.instance.player != null) {
@@ -38,4 +44,30 @@ public class Mob : MonoBehaviour {
         }
     }
 
+    internal void TakeDamage(int damage)
+    {
+        HitPoints -= damage;
+
+        if (HitPoints < 0)
+        {
+            IsDying = true;
+            _AIPath.canMove = false;
+            StartCoroutine(DoDying(1.2f));
+            _Animator.SetBool("IsDying", IsDying);
+            MobManager.instance.KillMob(this.gameObject);
+        }
+    }
+
+    IEnumerator DoDying(float timeToDeath)
+    {
+        TimeToDeath = timeToDeath;
+
+        while (TimeToDeath > 0)
+        {
+            TimeToDeath -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        Destroy(this.gameObject);
+    }
 }

@@ -27,12 +27,23 @@ public class MobManager : MonoBehaviour {
     public void ChangeRealm() {
         isOverworld = !isOverworld;
         foreach(GameObject mob in mobs) {
-            if(!isOverworld && mob.tag == "Overworld") {
-                mob.GetComponent<AIPath>().canMove = false;
-            }
-            else if (isOverworld && mob.tag == "Overworld") {
-                mob.GetComponent<AIPath>().canMove = true;
+            var path = mob.GetComponent<AIPath>();
+            if (path != null)
+            {
+                if (!isOverworld && mob.tag == "Overworld")
+                {
+                    mob.GetComponent<AIPath>().canMove = false;
+                }
+                else if (isOverworld && mob.tag == "Overworld")
+                {
+                    mob.GetComponent<AIPath>().canMove = true;
+                }
             }
         }
+    }
+
+    public void KillMob(GameObject mob)
+    {
+        mobs.Remove(mob);
     }
 }

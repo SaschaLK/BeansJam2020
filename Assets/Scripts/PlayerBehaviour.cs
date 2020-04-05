@@ -155,17 +155,6 @@ public class PlayerBehaviour : MonoBehaviour
             _DraggingVector = _DraggingPointStart - _DraggingPointEnd;
 
             var intensity = _DraggingVector.magnitude;
-            //var shootingVector = (_DraggingPointStart - (Vector2)transform.position).normalized;
-            //var from = (Vector2)transform.position;
-            //var to = (shootingVector - from);
-
-            //Debug.DrawLine((Vector2)transform.position, ((Vector2)transform.position + _ShootingVector.normalized));
-            //Debug.DrawLine(_DraggingPointStart, _DraggingPointEnd, Color.blue);
-
-
-            //var from = _PositionLookAt;
-            //var to = from - shootingVector * intensity;
-
             var shootingVector = (_PositionLookAt- (Vector2)transform.position).normalized;
             var from = (_PositionLookAt + shootingVector * intensity);
             var to = _PositionLookAt - shootingVector * intensity;
@@ -174,16 +163,8 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.DrawLine(from, to, Color.yellow);
 
             UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, from, to);
-            //UpdateGameObjectBetweenTwoPoints(CurrentDraggingArrowObject, (Vector2)transform.position, (_ShootingVector - (Vector2)transform.position));
         }
-        //else
-        //{
-            //_PositionLookAt = mouseWorldPosition;
-        //}
-
-        //Debug.DrawRay(_DraggingPointStart, (_DraggingPointEnd - _DraggingPointStart), Color.white);
-        //Debug.Log(_DraggingPointEnd.ToString());
-        //Debug.Log(_DraggingPointStart.ToString());
+        
         //Calculates final rotation
         var angle = this.AngleBetweenTwoPoints(_PositionLookAt, transform.position);
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
@@ -245,11 +226,13 @@ public class PlayerBehaviour : MonoBehaviour
     public void Fire()
     {
         var projectile = Instantiate(CurrentProjectile.Item, GameManager.Instance.ProjectilesGroup.transform);
+        var intensity = Mathf.Abs(_DraggingVector.magnitude);
 
         projectile.transform.position += transform.position + transform.up * 1.5f;
         var projectileBehaviour = projectile.GetComponent<ProjectileBehaviour>();
         projectileBehaviour.Direction = (_PositionLookAt - (Vector2)transform.position).normalized;
-        projectileBehaviour.SetVelocity(20);    //m/s
+        var velocity = 10 + Mathf.Min(20f, intensity * 20);
+        projectileBehaviour.SetVelocity(velocity);    //m/s
 
         //Audio
         AudioSourceShootSlingShot.PlayDelayed(0);
@@ -277,7 +260,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.layer == 9){
-            //TakeDamage(collision.gameObject);
+            TakeDamage(collision.gameObject);
         }
     }
 
@@ -286,9 +269,10 @@ public class PlayerBehaviour : MonoBehaviour
         var damage = 0;
 
         var mob = collisionObject.GetComponent<Mob>();
+        
         if (mob != null)
         {
-            damage = mob.damage;
+            damage = mob.Damage + (int)Random.Range(0f, 24f);
         }
 
         HitPoints -= damage;
@@ -301,7 +285,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(HitPoints <= 0) {
             //TO_DO Change to GameManager.instance.ChangeRealm()
-            MobManager.instance.ChangeRealm();
+            if (MobManager.instance != null)
+            {
+                MobManager.instance.ChangeRealm();
+            }
         }
     }
 }

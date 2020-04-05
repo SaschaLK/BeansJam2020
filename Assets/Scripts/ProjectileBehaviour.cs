@@ -11,6 +11,8 @@ public class ProjectileBehaviour : MonoBehaviour
 
     Rigidbody2D _RigidBody;
 
+    public int BaseDamage = 10;
+
     public float LifeTime = 10000;
 
     bool _IsDying;
@@ -27,6 +29,19 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             StartCoroutine(DoDying());
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            //TakeDamage(collision.gameObject);
+            var mob = collision.gameObject.GetComponent<Mob>();
+            var damage = (int)(Mathf.Max(0f, (BaseDamage + Mathf.Abs(_RigidBody.velocity.magnitude) * Random.Range(-1f, 5f))));
+            mob.TakeDamage(damage);
+            
+        }
+        LifeTime = 10;
     }
 
     //Destroys projectile after LifeTime

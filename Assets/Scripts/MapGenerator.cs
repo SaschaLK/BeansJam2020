@@ -188,7 +188,7 @@ public class MapGenerator : MonoBehaviour {
         foreach(Vector2 possibleLight in possibleLights) {
             float tempChance = Random.Range(0f, 1f);
             if (tempChance > lightThreshold) {
-                Debug.Log("int light");
+                //Debug.Log("int light");
                 Instantiate(torch, possibleLight, Quaternion.identity, transform);
             }
         }
