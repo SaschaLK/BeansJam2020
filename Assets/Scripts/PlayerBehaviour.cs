@@ -196,7 +196,7 @@ public class PlayerBehaviour : MonoBehaviour
         //==== HealthBar
         if (_SpriteHealthBar != null)
         {
-            _SpriteHealthBar.transform.position = (Vector2)transform.position + Vector2.up * 2.0f;
+            //_SpriteHealthBar.transform.position = (Vector2)transform.position + Vector2.up * 2.0f;
             //_SpriteHealthBar.transform.rotation = Quaternion.identity;
             
         }
