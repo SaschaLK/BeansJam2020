@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -133,6 +133,75 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 796389012}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &226699292
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385177, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 886441010520385179, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+        type: 3}
+      propertyPath: m_Name
+      value: WaterBG
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1627f65ad941d2f4cbd4eeb75ed9db49, type: 3}
 --- !u!1001 &236725431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,6 +601,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab_SceneSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 7631782918413243591, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631782919941265369, guid: babde8cc99ea2bc45949fe3cd8647000,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babde8cc99ea2bc45949fe3cd8647000, type: 3}
 --- !u!1001 &952192559
@@ -608,6 +687,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207f2e5270f5405498933a64fd809fc5, type: 3}
+--- !u!1 &1083818150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 886441010520385179, guid: 1627f65ad941d2f4cbd4eeb75ed9db49,
+    type: 3}
+  m_PrefabInstance: {fileID: 226699292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1353896836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,6 +710,11 @@ PrefabInstance:
       propertyPath: light
       value: 
       objectReference: {fileID: 2100266000}
+    - target: {fileID: 2424474068967468872, guid: 533ddab544e11b24297daed757dd0405,
+        type: 3}
+      propertyPath: waterTile
+      value: 
+      objectReference: {fileID: 1083818150}
     - target: {fileID: 2424474068967468873, guid: 533ddab544e11b24297daed757dd0405,
         type: 3}
       propertyPath: m_LocalPosition.x
