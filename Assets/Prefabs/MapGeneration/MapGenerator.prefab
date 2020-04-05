@@ -43,10 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d960d636d3fe4e8a1c6611333ed1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worldBuffer: 20
   width: 60
   height: 40
   thresholdObstacle: 0.671
   thresholdSpawner: 0.995
+  waterTile: {fileID: 0}
   wallTilesNESW:
   - {fileID: 9119593405034062348, guid: b3fc7fc1a8c79f44a92609e24b539c4d, type: 3}
   - {fileID: 9119593405034062348, guid: 96d339074fe3af44f9e3c961d0a5a8c8, type: 3}
@@ -65,8 +67,23 @@ MonoBehaviour:
   - {fileID: 5396408984054461636, guid: 28133ed492ffdc44daa1b7381af551f5, type: 3}
   - {fileID: 5396408984054461636, guid: 3b2d035259823bf4385c0c07d4d03f79, type: 3}
   - {fileID: 5396408984054461636, guid: 570f41306edfe9541b35b3c8b4f32edb, type: 3}
-  obstacles: []
-  obstacleTEMP: []
+  obstacles:
+  - {fileID: 9119593405034062348, guid: 63fd27f8c81081444a69f06486243294, type: 3}
+  - {fileID: 9119593405034062348, guid: 334c27eb159b0334cb8a7ba34138a612, type: 3}
+  - {fileID: 9119593405034062348, guid: 131959760882758469a01b5ffdb758f2, type: 3}
+  - {fileID: 9119593405034062348, guid: 9bac44acd9eb1b041bed48fff8772f2e, type: 3}
+  - {fileID: 9119593405034062348, guid: 692bb5db9f3c55646818d2af92ca3e1f, type: 3}
+  - {fileID: 9119593405034062348, guid: f15fdb3e0795d554eac14db263f68c65, type: 3}
+  - {fileID: 9119593405034062348, guid: c9ae164759943774ba4220099082b588, type: 3}
+  - {fileID: 9119593405034062348, guid: db806839b23520448b80a154e084b304, type: 3}
+  - {fileID: 9119593405034062348, guid: 7cd24d7989bd1ae49954bd62f589fdfb, type: 3}
+  - {fileID: 9119593405034062348, guid: 67d477366e2d1274b83389a1eab18816, type: 3}
+  - {fileID: 9119593405034062348, guid: c5a5924c0155a284ca20569888e65a55, type: 3}
+  - {fileID: 9119593405034062348, guid: 3ad08eaaa82ee6047b860c1f4485ebdc, type: 3}
+  - {fileID: 9119593405034062348, guid: 46d060c057e0c3046b3edcffe569248d, type: 3}
+  - {fileID: 9119593405034062348, guid: fd9cca5eb2578c64e8f7597b1ca6a733, type: 3}
+  - {fileID: 9119593405034062348, guid: 60b57d664a7c9a546821330417959f96, type: 3}
+  - {fileID: 9119593405034062348, guid: 4d2d4dcdb564e40488953bae311c6dc3, type: 3}
   spawner: {fileID: 5396408984054461636, guid: 7919de35abd1fde429134ea6359b3799, type: 3}
   torch: {fileID: 2718001258831460439, guid: 08f0626ad28a6d141a00c4075cad1c70, type: 3}
   lightThreshold: 0.892

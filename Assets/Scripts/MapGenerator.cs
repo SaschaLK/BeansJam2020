@@ -5,20 +5,17 @@ using Pathfinding;
 
 public class MapGenerator : MonoBehaviour {
 
+    public int worldBuffer;
     public int width;
     public int height;
 
     [Range(0, 1)] public float thresholdObstacle;
     [Range(0, 1)] public float thresholdSpawner;
 
+    public GameObject waterTile;
     public List<GameObject> wallTilesNESW = new List<GameObject>();
     public List<GameObject> floorTiles = new List<GameObject>();
     public List<GameObject> obstacles = new List<GameObject>();
-    //[System.Serializable] class Obstacles
-
-    //public List<GameObject>[] obstacles;
-    //public List<List<GameObject>> obstacles = new List<List<GameObject>>();
-    public List<GameObject> obstacleTEMP = new List<GameObject>();
 
     public GameObject spawner;
     public GameObject torch;
@@ -29,6 +26,7 @@ public class MapGenerator : MonoBehaviour {
     private Dictionary<Vector2, int> obstacleIDS = new Dictionary<Vector2, int>();
 
     private void Start() {
+        GenerateWater();
         GenerateWalls();
         GenerateFloor();
         GenerateDictionary();
@@ -38,6 +36,11 @@ public class MapGenerator : MonoBehaviour {
         GenerateLights();
 
         AstarPath.active.Scan();
+    }
+
+    private void GenerateWater() {
+        waterTile.GetComponent<SpriteRenderer>().size = new Vector2(worldBuffer+width, worldBuffer+height);
+        waterTile.transform.position = new Vector2(width / 2, height / 2);
     }
 
     private void GenerateWalls() {
@@ -104,7 +107,6 @@ public class MapGenerator : MonoBehaviour {
                 if (Mathf.PerlinNoise(x * 0.1f + seed, y * 0.1f + seed) > thresholdObstacle) {
                     obstacleMap[new Vector2(x, y)] = true;
                     obstacleIDS.Add(new Vector2(x, y), 0);
-                    //Instantiate(obstacleTEMP[0], new Vector3(x, y), Quaternion.identity, transform);
                 }
             }
         }
@@ -188,55 +190,6 @@ public class MapGenerator : MonoBehaviour {
                     case 15:
                         Instantiate(obstacles[15], obstacle.Key, Quaternion.identity, transform);
                         break;
-
-
-
-
-                        ////0 Neighbours
-                        //case 0:
-                        //    Instantiate(obstacles[0], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-
-                        ////1 Neighbour
-                        //case 4:
-                        //    Instantiate(obstacles[1], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 1:
-                        //    Instantiate(obstacles[2], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 8:
-                        //    Instantiate(obstacles[3], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 2:
-                        //    Instantiate(obstacles[4], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-
-                        ////2 Neighbours
-                        //case 5:
-                        //    Instantiate(obstacles[5], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 10:
-                        //    Instantiate(obstacles[6], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-
-                        ////3 Neighbours
-                        //case 14:
-                        //    Instantiate(obstacles[7], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 7:
-                        //    Instantiate(obstacles[8], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 11:
-                        //    Instantiate(obstacles[9], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-                        //case 13:
-                        //    Instantiate(obstacles[10], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
-
-                        ////4 Neighbours
-                        //case 15:
-                        //    Instantiate(obstacles[11], obstacle.Key, Quaternion.identity, transform);
-                        //    break;
                 }
             }
         }
