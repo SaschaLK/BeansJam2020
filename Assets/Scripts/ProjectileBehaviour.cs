@@ -35,6 +35,7 @@ public class ProjectileBehaviour : MonoBehaviour
         if (_IsDying == true)
         {
             StartCoroutine(DoDying());
+            _IsDying = false;
         }
 
         
@@ -50,8 +51,10 @@ public class ProjectileBehaviour : MonoBehaviour
             {
                 _Animator.SetBool("IsExploding", true);
             }
-            LifeTime = 10;
+            LifeTime = 0.1f;
+            
         }
+        _IsExploding = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,7 +72,11 @@ public class ProjectileBehaviour : MonoBehaviour
             mob.TakeDamage(damage);
             
         }
-        LifeTime = 10;
+        
+        if (!IsExplosive)
+        {
+            LifeTime = 0.1f;
+        }
     }
 
     //Destroys projectile after LifeTime
@@ -91,6 +98,7 @@ public class ProjectileBehaviour : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         _IsExploding = true;
+        
     }
 
     public void SetVelocity(float velocity)

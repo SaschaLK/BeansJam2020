@@ -129,7 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: 0}
   IsFlying: 1
-  LifeTime: 10000
+  BaseDamage: 10
+  IsExplosive: 0
+  LifeTime: 5
+  TickingTime: 5
 --- !u!58 &-3827865630389863516
 CircleCollider2D:
   m_ObjectHideFlags: 0

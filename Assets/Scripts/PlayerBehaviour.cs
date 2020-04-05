@@ -246,6 +246,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         _Rigidbody.MovePosition(finalMovement);
 
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            GameManager.Instance.AddForceAtPosition(_PositionLookAt, 10000, 10f);
+        }
     }
 
     public void Fire()

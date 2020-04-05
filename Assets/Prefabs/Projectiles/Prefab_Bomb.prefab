@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5006629663801139025}
   - component: {fileID: 4556558662560377019}
   - component: {fileID: 6718321433241730846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bomb_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,10 +110,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1972724036031761099}
-  - component: {fileID: 6573779172616344610}
   - component: {fileID: 1785722873693235162}
   - component: {fileID: 3983625014489574588}
-  m_Layer: 0
+  - component: {fileID: 2948754805663824949}
+  - component: {fileID: 5949587239345258167}
+  - component: {fileID: 6962598426568829237}
+  - component: {fileID: 6634889942139202164}
+  m_Layer: 10
   m_Name: Prefab_Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,32 +138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6573779172616344610
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3179581987313294366}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &1785722873693235162
 Rigidbody2D:
   serializedVersion: 4
@@ -197,6 +174,101 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   IsFlying: 1
   BaseDamage: 1
-  IsExplosive: 0
-  LifeTime: 10000
-  TickingTime: 5
+  IsExplosive: 1
+  LifeTime: 10
+  TickingTime: 1
+--- !u!114 &2948754805663824949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3179581987313294366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.99818885, g: 1, b: 0.5707547, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 1
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 1
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 3
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 10
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1.33
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &5949587239345258167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3179581987313294366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f328ad33e0cfa47b8079866668d4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsFlickering: 1
+  MaxReduction: 0.2
+  MaxIncrease: 0.2
+  RateDamping: 0.1
+  Strength: 300
+  Light: {fileID: 2948754805663824949}
+--- !u!58 &6962598426568829237
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3179581987313294366}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.77
+--- !u!250 &6634889942139202164
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3179581987313294366}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 1000
+  m_ForceVariation: 500
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
