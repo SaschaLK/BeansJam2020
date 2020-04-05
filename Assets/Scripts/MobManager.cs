@@ -40,6 +40,8 @@ public class MobManager : MonoBehaviour {
                 }
             }
         }
+
+        MapGenerator.instance.ChangeRealm();
     }
 
     public void KillMob(GameObject mob)
