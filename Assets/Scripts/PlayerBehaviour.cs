@@ -56,6 +56,9 @@ public class PlayerBehaviour : MonoBehaviour
     Animator _Animator;
     private Vector2 _DraggingVector;
 
+    public AudioClip[] AudioClipFootSteps;
+    public AudioSource AudioSourceFootSteps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +87,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             AudioController.Instance.ChangeTheme(TrackThemes.Alive);
         }
+
+        
     }
 
 
@@ -164,6 +169,20 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator.SetBool("IsWalking", IsWalking);
         _Animator.SetBool("IsDragging", IsDragging);
 
+        //Audio
+        if (IsWalking)
+        {
+            if (AudioSourceFootSteps.isPlaying == false)
+            {
+                AudioSourceFootSteps.clip = AudioClipFootSteps[Random.Range(0, AudioClipFootSteps.Length - 1)];
+                
+                AudioSourceFootSteps.PlayDelayed(0f);
+            }
+        }
+        else
+        {
+            AudioSourceFootSteps.Stop();
+        }
     }
 
     public void UpdateGameObjectBetweenTwoPoints(GameObject prefab, Vector2 from, Vector2 to)
