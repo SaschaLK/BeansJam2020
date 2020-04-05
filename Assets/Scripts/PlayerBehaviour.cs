@@ -60,7 +60,7 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioSource AudioSourceFootSteps;
     public AudioSource AudioSourceShootSlingShot;
 
-    public GameObject SpriteHealthBar;
+    GameObject _SpriteHealthBar;
     
 
     // Start is called before the first frame update
@@ -75,7 +75,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (ProjectileBomb != null)
         {
-            Projectiles.Add(new ItemSlot { Item = ProjectileBomb, Count = 3.0f, CoolDown = 5f });
+            Projectiles.Add(new ItemSlot { Item = ProjectileBomb, Count = 3.0f, CoolDown = 0.1f });
         }
 
         CurrentProjectile = Projectiles.FirstOrDefault();
@@ -96,15 +96,19 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_UIHealthBar == null)
+        //if (_UIHealthBar == null)
+        //{
+        //    if (GameManager.Instance != null)
+        //    {
+        //        _UIHealthBar = GameManager.Instance.HealthBar.GetComponent<HealthBar>();
+        //        _UIHealthBar.SetMaxHealth(HitPoints);
+        //    }
+        //}
+        if (_SpriteHealthBar == null)
         {
-            if (GameManager.Instance != null)
-            {
-                _UIHealthBar = GameManager.Instance.HealthBar.GetComponent<HealthBar>();
-                _UIHealthBar.SetMaxHealth(HitPoints);
-            }
+            _SpriteHealthBar = GameManager.Instance.HealthBar;
+            //Debug.Log(_SpriteHealthBar);
         }
-
         
 
         //==== Movement
@@ -120,6 +124,15 @@ public class PlayerBehaviour : MonoBehaviour
         //This describes the mouse position in world coordinates
         var mouseWorldPosition = (Vector2)Camera.main.ScreenToWorldPoint(mousePos);
 
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            CurrentProjectile = Projectiles[0];
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            CurrentProjectile = Projectiles[1];
+        }
         
 
         if (Input.GetButton("Fire1"))
@@ -181,10 +194,11 @@ public class PlayerBehaviour : MonoBehaviour
         _Animator.SetBool("IsDragging", IsDragging);
 
         //==== HealthBar
-        if (SpriteHealthBar != null)
+        if (_SpriteHealthBar != null)
         {
-            SpriteHealthBar.transform.position = (Vector2)transform.position + Vector2.up * 2.0f;
-            SpriteHealthBar.transform.rotation = Quaternion.identity;
+            _SpriteHealthBar.transform.position = (Vector2)transform.position + Vector2.up * 2.0f;
+            //_SpriteHealthBar.transform.rotation = Quaternion.identity;
+            
         }
 
         //==== Audio
