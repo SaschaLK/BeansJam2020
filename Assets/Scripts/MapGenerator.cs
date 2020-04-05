@@ -5,6 +5,12 @@ using Pathfinding;
 
 public class MapGenerator : MonoBehaviour {
 
+    public static MapGenerator instance;
+
+    private void Awake() {
+        instance = this;
+    }
+
     public int worldBuffer;
     public int width;
     public int height;
@@ -15,6 +21,8 @@ public class MapGenerator : MonoBehaviour {
     public GameObject waterTile;
     public List<GameObject> wallTilesNESW = new List<GameObject>();
     public List<GameObject> floorTiles = new List<GameObject>();
+    private List<GameObject> instantiatedFloorTiles = new List<GameObject>();
+    public List<Sprite> floorTiles2 = new List<Sprite>();
     public List<GameObject> obstacles = new List<GameObject>();
 
     public GameObject spawner;
@@ -87,7 +95,7 @@ public class MapGenerator : MonoBehaviour {
         for (int x = 0; x <= width; x++) {
             for (int y = 0; y <= height; y++) {
                 int selection = Random.Range(0, floorTiles.Count);
-                Instantiate(floorTiles[selection], new Vector3(x, y), Quaternion.identity, transform);
+                instantiatedFloorTiles.Add(Instantiate(floorTiles[selection], new Vector3(x, y), Quaternion.identity, transform));
             }
         }
     }
@@ -244,6 +252,12 @@ public class MapGenerator : MonoBehaviour {
                 //Debug.Log("int light");
                 Instantiate(torch, possibleLight, Quaternion.identity, transform);
             }
+        }
+    }
+
+    public void ChangeRealm() {
+        foreach (GameObject floorTile in instantiatedFloorTiles) {
+            floorTile.GetComponent<SpriteRenderer>().sprite = floorTiles2[Random.Range(0, floorTiles2.Count)];
         }
     }
 }
